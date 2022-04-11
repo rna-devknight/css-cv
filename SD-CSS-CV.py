@@ -53,7 +53,10 @@ def easy_spi_test(message):
         print("Attempting transmission...")
         msg_len = len(message)
         spi.writebytes2(msg)
-        print(spi.readbytes(msg_len))
+
+        while True:
+            print(spi.readbytes(msg_len))
+            
         print("Transmission complete")
 
     
@@ -83,7 +86,7 @@ def spi_start():
 
     logging.info("Beginning SPI connection......")
 
-    spi_settings_log = f"Port: {bus}\n Device: {device}\n Max_Speed = {speed}\n"
+    spi_settings_log = "Port: {bus}\n Device: {device}\n Max_Speed = {speed}\n".format()
     logging.info(spi_settings_log)
 
     # Enables SPI communication
@@ -103,7 +106,7 @@ def spi_start():
         spi.lsbfirst = False
         logging.info("Settings applied")
     except Exception as e:
-        logging.critical(f"{e}")
+        logging.critical("{e}".format())
 
         if spi:
             spi.close()
@@ -178,7 +181,7 @@ def capture_plate(coordinates, image_frame):
     img_name = "car_plate_{i}".format(i)
     og_img_name = f"{img_name}_full_capture"
 
-    logging.info(f"Storing {img_name}")
+    logging.info("Storing {img_name}".format())
     cv.imwrite(img_name, localized_img)
     cv.imwrite(og_img_name, image_frame)
 
