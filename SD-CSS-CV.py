@@ -297,6 +297,6 @@ if __name__ == '__main__':
         logging.basicConfig(filename = "debug.log", filemode="w", level = logging.DEBUG)
 
     if testing_module:
-        easy_spi_test()
+        easy_spi_test("Bingo")
     else:
         main(debug)
